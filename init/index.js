@@ -30,13 +30,12 @@ async function initDb() {
   let firstUser = new User({
     email: "tanmayhatkar240@gmail.com",
     username: "tanmay240",
-    password: "123456"
   })
-  firstUser.save();
+  let registeredUser = await User.register(firstUser, "123456");
   let reviewIds = [];
   for(let review of initData.reviews){
     let newReview = new Review(review);
-    newReview.author = firstUser._id;
+    newReview.author = registeredUser._id;
     reviewIds.push(newReview._id);
     await newReview.save();
   }
@@ -44,7 +43,7 @@ async function initDb() {
   for(let listing of initData.listings){
     let newListing = new Listing(listing);
     newListing.reviews = reviewIds.slice(i, i+5);
-    newListing.owner = firstUser._id;
+    newListing.owner = registeredUser._id;
     i+=5;
     await newListing.save();
   }
