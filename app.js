@@ -84,10 +84,10 @@ app.use((req, res, next) => {
   return next();
 });
 
-// // home route
-// app.get("/", (req, res) => {
-//   res.render("root/home.ejs");
-// });
+// home route
+app.get("/", (req, res) => {
+  res.redirect("/listings");
+});
 
 // privacy route
 app.get("/privacy",(req, res, next) => {
