@@ -1,0 +1,124 @@
+<% layout("/layouts/boilerplate.ejs") -%>
+  <body>
+    <h3 class="mb-4">Create a New Listing</h3>
+    <form action="/listings" method="post" class="row g-3 needs-validation" enctype="multipart/form-data" novalidate>
+
+        <div class="col-12 col-lg-5">
+          <label for="title" class="form-label">Title</label>
+          <input type="text" name="title" id="title" class="form-control" placeholder="Give your Listing a catchy Title!" required/>
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+          <div class="invalid-feedback">
+            Title is required
+          </div>
+        </div>
+
+        <div class="col-12 col-lg-4">
+          <label for="image" class="form-label">Image Upload</label>
+          <input
+            class="form-control"
+            type="file"
+            name="image"
+            id="image"
+          />
+          <div class="valid-feedback">
+            Not required, though good to have!
+          </div>
+        </div>
+
+        <div class="col-12 col-lg-3">
+          <label for="category" class="form-label">Category</label>
+          <select name="category" id="category" class="form-select" required>
+            <option value="trending" selected>Trending</option>
+            <option value="rooms">Rooms</option>
+            <option value="iconic-cities">Iconic City</option>
+            <option value="mountains">Mountain</option>
+            <option value="castles">Castle</option>
+            <option value="amazing-pools">Amazing Pool</option>
+            <option value="camping">Camping</option>
+            <option value="farms">Farm</option>
+            <option value="arctic">Arctic</option>
+          </select>
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+          <div class="invalid-feedback">
+            Category is required!
+          </div>
+        </div>
+
+        <div class="col-12">
+          <label for="description" class="form-label">Description</label>
+          <textarea
+        name="description"
+        id="description"
+        placeholder="Describe your place"
+        class="form-control"
+        required
+      ></textarea>
+      <div class="valid-feedback">
+            Looks good!
+          </div>
+          <div class="invalid-feedback">
+            Please write a small description
+          </div>
+        </div>
+
+        <div class="col-12 col-md-4">
+          <label for="price" class="form-label">Price</label>
+          <div class="input-group">
+            <span class="input-group-text">&#8377;</span>
+            <input type="number" name="price" id="price" placeholder="Rate per night?" class="form-control" required/>
+            <span class="input-group-text"> / night</span>
+            <div class="valid-feedback">
+            Looks good!
+          </div>
+          <div class="invalid-feedback">
+            Price is required
+          </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-8 ">
+          <label for="country" class="form-label">Country</label>
+          <input
+          class="form-control"
+            type="text"
+            name="country"
+            id="country"
+            placeholder="Your country"
+            required
+          />
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+          <div class="invalid-feedback">
+            Country is required
+          </div>
+        </div>
+
+        <div class="col-12">
+          <label for="location" class="form-label">Location</label>
+          <input
+          class="form-control"
+            type="text"
+            name="location"
+            id="location"
+            placeholder="Where is you property?"
+            required
+          />
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+          <div class="invalid-feedback">
+            Location is required
+          </div>
+        </div>
+
+        <div class="col-12 align-self-end">
+          <button id="button" type="submit" class="btn btn-danger w-100">Add Listing</button>
+        </div>
+      </div>
+    </form>
+  </body>

@@ -1,0 +1,141 @@
+<% layout("layouts/boilerplate.ejs") -%>
+  <body>
+    <!-- <h3>All Listings</h3> -->
+     <div class="filters-and-tax row">
+      <div class="col-12 col-md-8 flex-grow-1 overflow-auto">
+        <div id="filters">
+         <div class="filter">
+           <label for="all">
+             <i class="fa-solid fa-globe"></i>
+             <p>All Listings</p>
+           </label>
+           <input type="radio" name="filter" id="all" value="all" checked>
+         </div>
+         <div class="filter">
+           <label for="trending">
+             <i class="fa-solid fa-fire"></i>
+             <p>Trending</p>
+           </label>
+           <input type="radio" name="filter" id="trending" value="trending">
+         </div>
+         <div class="filter">
+           <label for="rooms">
+             <i class="fa-solid fa-bed"></i>
+             <p>Rooms</p>
+           </label>
+           <input type="radio" name="filter" id="rooms" value="rooms">
+         </div>
+         <div class="filter">
+           <label for="iconic-cities">
+             <i class="fa-solid fa-mountain-city"></i>
+             <p>Iconic Cities</p>
+           </label>
+           <input type="radio" name="filter" id="iconic-cities" value="iconic-cities">
+         </div>
+         <div class="filter">
+           <label for="mountains">
+             <i class="fa-solid fa-mountain"></i>
+             <p>Mountains</p>
+           </label>
+           <input type="radio" name="filter" id="mountains" value="mountains">
+         </div>
+         <div class="filter">
+           <label for="castles">
+             <i class="fa-brands fa-fort-awesome"></i>
+             <p>Castles</p>
+           </label>
+           <input type="radio" name="filter" id="castles" value="castles">
+         </div>
+         <div class="filter">
+           <label for="amazing-pools">
+             <i class="fa-solid fa-water-ladder"></i>
+             <p>Amazing Pools</p>
+           </label>
+           <input type="radio" name="filter" id="amazing-pools" value="amazing-pools">
+         </div>
+         <div class="filter">
+           <label for="camping">
+             <i class="fa-solid fa-campground"></i>
+             <p>Camping</p>
+           </label>
+           <input type="radio" name="filter" id="camping" value="camping">
+         </div>
+         <div class="filter">
+           <label for="farms">
+             <i class="fa-solid fa-cow"></i>
+             <p>Farms</p>
+           </label>
+           <input type="radio" name="filter" id="farms" value="farms">
+         </div>
+         <div class="filter">
+           <label for="arctic">
+             <i class="fa-solid fa-snowflake"></i>
+             <p>Arctic</p>
+           </label>
+           <input type="radio" name="filter" id="arctic" value="arctic">
+         </div>
+        </div>
+      </div>
+       <div class="tax-toggle col-auto ms-auto me-3">
+        <div class="form-check form-switch form-check-reverse">
+          <input class="form-check-input" type="checkbox" id="switchCheckReverse">
+          <label class="form-check-label" for="switchCheckReverse">Tax added total</label>
+        </div>
+       </div>
+     </div>
+    <br>
+    <div class="listings-container container-fluid">
+      <% for(listing of allListings){ %>
+        <a href="/listings/<%= listing._id %>" class="card card-listings" style="width: 18rem;" data-category="<%= listing.category %>">
+          <img src="<%= listing.image.url %>" class="card-img-top" alt="House Image">
+          <div class="card-body">
+            <h5 class="card-title"><%= listing.title %></h5>
+            <p class="card-text notax-price">&#8377;<%= listing.price.toLocaleString("en-in") %> / night</p>
+            <p class="card-text tax-price">&#8377;<%= (listing.price*1.18).toLocaleString("en-in") %> / night (18% gst added)</p>
+          </div>
+        </a>
+        <% } %>
+    </div>
+    <script>
+      // filter logic
+  document.addEventListener("DOMContentLoaded", () => {
+    const filters = document.querySelectorAll('input[name="filter"]');
+    const listings = document.querySelectorAll(".card-listings");
+
+    filters.forEach(filter => {
+      filter.addEventListener("change", () => {
+        const selected = filter.value;
+
+        listings.forEach(card => {
+          const category = card.dataset.category;
+
+          if (category === selected || selected === "all") {
+            card.style.display = "inline-block";
+          } else {
+            card.style.display = "none";
+          }
+        });
+      });
+    });
+  });
+
+  // tax logic
+  let taxSwitch = document.getElementById("switchCheckReverse");
+  let price = document.getElementsByClassName("notax-price");
+  let taxPrice = document.getElementsByClassName("tax-price");
+  taxSwitch.addEventListener("click", (evt) => {
+    let n = price.length;
+    if(taxSwitch.checked){
+      for(let i = 0; i < n; i++){
+        price[i].style.display = "none";
+        taxPrice[i].style.display = "inline"
+      }
+    }else{
+      for(let i = 0; i < n; i++){
+        taxPrice[i].style.display = "none";
+        price[i].style.display = "inline"
+      }
+    }
+  })
+</script>
+  </body>
