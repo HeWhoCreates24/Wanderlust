@@ -130,7 +130,6 @@ footer{
     align-items: center;
     gap: 2rem;
     overflow-x: auto;
-
 }
 
 .filter{
@@ -170,10 +169,10 @@ footer{
 .tax-toggle{
     text-wrap: nowrap;
     display: inline-flex;
-    justify-content: end;
+    justify-content: center;
     align-items: center;
-    border: 1px solid #464646;
-    padding: 0.8rem;
+    border: 1px solid rgb(221, 221, 221);
+    padding: 0.7rem 1.3rem 0.3rem;
     border-radius: 1rem;
     font-size: 0.8rem;
     
@@ -185,4 +184,9 @@ footer{
 
 .notax-price{
     display: inline;
+}
+
+/* navbar search */
+.small-search{
+    width: 50%;
 }
