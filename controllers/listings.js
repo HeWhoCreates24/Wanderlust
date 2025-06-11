@@ -1,8 +1,25 @@
 const Listing = require("../models/listing.js");
 
 module.exports.index = async (req, res) => {
-  const allListings = await Listing.find({});
-  res.render("listings/index.ejs", { allListings });
+  const {q} = req.query;
+  let allListings;
+   if (q) {
+    allListings = await Listing.find({
+      $or: [
+        { title: { $regex: q, $options: "i" } },
+        { description: { $regex: q, $options: "i" } },
+        { location: { $regex: q, $options: "i" } },
+        { country: { $regex: q, $options: "i" } },
+      ],
+    });
+  } else {
+    allListings = await Listing.find({});
+  }
+  if(allListings.length == 0){
+    req.flash("error", `No listings found for "${q}"`);
+    return res.redirect("/listings");
+  }
+  res.render("listings/index.ejs", { allListings, searchQuery: q || "" });
 }
 
 module.exports.new = (req, res) => {

@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const wrapAsync = require("../utils/wrapAsync");
-const {validateID, validateListing, isLoggedIn, addOwner, isOwner, setCoordinates} = require("../middlewares.js");
+const {validateID, validateListing, isLoggedIn, addOwner, isOwner, setCoordinates, safeQuery} = require("../middlewares.js");
 const listingController = require("../controllers/listings.js");
 const multer = require("multer");
 const {storage} = require("../cloudConfig.js");
@@ -11,7 +11,7 @@ const upload = multer({storage});
 router.route("/")
 
 // index route
-.get(wrapAsync(listingController.index))
+.get(safeQuery, wrapAsync(listingController.index))
 
 // create route
 .post(isLoggedIn, upload.single("image"), addOwner, validateListing, wrapAsync(listingController.create))

@@ -8,9 +8,9 @@
       <div class="navbar-nav">
         <a class="nav-link ps-2" href="/listings">Explore</a>
       </div>
-      <div class="navbar-nav ms-auto bg-white w-50">
-         <form class="d-flex flex-grow-1" role="search">
-          <input class="form-control me-2 rounded-pill" type="search" placeholder="Search Listings!" aria-label="Search"/>
+      <div class="bg-white flex-grow-1 mx-md-2 mx-lg-5">
+         <form class="d-flex flex-grow-1" role="search" method="get" action="/listings">
+          <input class="form-control me-2 rounded-pill" name="q" type="search" placeholder="Search Listings!" aria-label="Search"/>
           <button class="btn btn-outline-danger rounded-pill border-0 text-nowrap" type="submit"><i class="fa-solid fa-magnifying-glass"></i>&nbsp; Search</button>
         </form>
       </div>

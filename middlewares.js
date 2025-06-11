@@ -129,3 +129,10 @@ module.exports.setCoordinates = async (req, res, next) => {
     return next();
   }
 }
+
+module.exports.safeQuery = (req, res, next) => {
+  if(req.query.q){
+    req.query.q = req.query.q.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
+  }
+  next();
+}
