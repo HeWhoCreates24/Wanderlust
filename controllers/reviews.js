@@ -27,7 +27,7 @@ module.exports.edit = async (req, res, next) => {
   if(review){
     res.render("reviews/edit.ejs", {review, listing:{_id: id}});
   }else{
-    req.flash("failure", "Review Does Not Exist!");
+    req.flash("error", "Review Does Not Exist!");
     res.redirect(`/listings/${id}`);
   }
 }

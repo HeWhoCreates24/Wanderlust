@@ -48,7 +48,7 @@ module.exports.show = async (req, res, next) => {
   if(listing){
     res.render("listings/show.ejs", { listing });
   }else{
-    req.flash("failure", "Listing Does Not Exist!");
+    req.flash("error", "Listing Does Not Exist!");
     res.redirect("/listings");
   }
 }
@@ -60,7 +60,7 @@ module.exports.edit = async (req, res, next) => {
     let previewUrl = listing.image.url.replace("/upload", "/upload/w_250");
     res.render("listings/edit.ejs", { listing, previewUrl });
   }else{
-    req.flash("failure", "Listing Does Not Exist!");
+    req.flash("error", "Listing Does Not Exist!");
     res.redirect("/listings");
   }
 }

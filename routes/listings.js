@@ -33,4 +33,7 @@ router.route("/:id")
 // edit route
 router.get("/:id/edit", isLoggedIn, isOwner, validateID, wrapAsync(listingController.edit));
 
+// reserve route
+router.get("/:id/reserve", isLoggedIn, validateID)
+
 module.exports = router;

@@ -56,7 +56,7 @@ module.exports.isLoggedIn = async (req, res, next) => {
     return next();
   }else{
     req.session.redirectUrl = req.originalUrl;
-    req.flash("failure", "You must be logged in for that");
+    req.flash("error", "You must be logged in for that!");
     res.redirect("/login");
   }
 }
@@ -79,7 +79,7 @@ module.exports.isOwner = wrapAsync(async (req, res, next) => {
   if(res.locals.currUser._id.equals(listing.owner._id)){
     return next();
   }else{
-    req.flash("failure", "you are not The Owner of this Listing! you cannot do that.");
+    req.flash("error", "you are not The Owner of this Listing! you cannot do that.");
     res.redirect(`/listings/${id}`);
   }
 });
@@ -95,7 +95,7 @@ module.exports.isAuthor = wrapAsync(async (req, res, next) => {
   if(review.author._id.equals(res.locals.currUser._id)){
     return next();
   }else{
-    req.flash("failure", "you are not The Author of this Review! you cannot do that.");
+    req.flash("error", "you are not The Author of this Review! you cannot do that.");
     res.redirect(`/listings/${id}`);
   }
 });
