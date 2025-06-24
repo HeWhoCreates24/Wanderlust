@@ -86,3 +86,13 @@ module.exports.delete = async (req, res, next) => {
     req.flash("success", "Listing Deleted Sccessfully!");
     res.redirect("/listings");
 }
+
+module.exports.reserve = async (req, res, next) => {
+  const {id} = req.params;
+  let listing = await Listing.findById(id);
+  res.render("listings/reserve.ejs", {listing})
+}
+
+module.exports.end = (req, res, next) => {
+  res.render("listings/end.ejs");
+}

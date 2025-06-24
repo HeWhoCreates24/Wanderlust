@@ -19,6 +19,9 @@ router.route("/")
 // new route
 router.get("/new", isLoggedIn, listingController.new);
 
+// end route
+router.get("/end", listingController.end);
+
 router.route("/:id")
 
 // show route
@@ -34,6 +37,7 @@ router.route("/:id")
 router.get("/:id/edit", isLoggedIn, isOwner, validateID, wrapAsync(listingController.edit));
 
 // reserve route
-router.get("/:id/reserve", isLoggedIn, validateID)
+router.get("/:id/reserve", isLoggedIn, validateID, wrapAsync(listingController.reserve));
+
 
 module.exports = router;

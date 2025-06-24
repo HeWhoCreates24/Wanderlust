@@ -1,0 +1,28 @@
+<% layout("/layouts/boilerplate.ejs") -%>
+<body>
+    <h3 class="mb-4">Reserve listing</h3>
+    <form action="/listings/end" method="get" class="needs-validation" novalidate>
+        <div class="row g-3">
+            <div class="col-12 col-md-4">
+                <label class="form-label" for="from">From</label>
+                <input class="form-control" type="date" name="from" id="from" required>
+            </div>
+            <div class="col-12 col-md-4">
+                <label class="form-label" for="till">Till</label>
+                <input class="form-control" type="date" name="till" id="till" required>
+            </div>
+            <div class="col-12 col-md-4">
+                <label class="form-label" for="guests">Guests</label>
+                <input class="form-control" type="number" name="guests" id="guests" min="1" value="1">
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="form-control">
+                    &#8377; <%= listing.price.toLocaleString("en-in") %> / night
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <button type="submit" class="btn btn-danger w-100">Confirm and Pay</button>
+            </div>
+        </div>
+    </form>
+</body>
